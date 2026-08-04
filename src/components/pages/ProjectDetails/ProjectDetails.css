@@ -1,0 +1,97 @@
+.pd { display: flex; flex-direction: column; gap: 90px; width: 100%; justify-content: flex-start; }
+
+.pd-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--color-accent); font-size: 14px; font-weight: 600;
+  background: none; border: none; cursor: pointer; padding: 0;
+  transition: opacity 0.2s;
+}
+.pd-back:hover { opacity: 0.7; }
+
+.pd-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.pd-name { font-size: 42px; margin-bottom: 4px; }
+.pd-subtitle { font-size: 22px; margin-bottom: 12px; }
+.pd-summary { color: #aaa; max-width: 460px; margin-bottom: 20px; }
+.pd-meta { display: grid; grid-template-columns: repeat(4, auto); gap: 40px; margin-bottom: 24px; }
+.pd-meta-label { color: #888; font-size: 11px; letter-spacing: 0.1em; margin-bottom: 4px; }
+.pd-meta-val { color: #fff; font-weight: 600; font-size: 14px; }
+.pd-cta { display: flex; gap: 12px; }
+.pd-hero-img { aspect-ratio: 4/3; }
+.pd-hero-placeholder {
+  width: 100%; height: 100%; border-radius: 12px;
+  background: #1a1a1a; color: #666; display: grid; place-items: center;
+  min-height: 200px;
+}
+
+.pd-section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.pd-section-num {
+  border: 1px solid var(--color-accent); color: var(--color-accent);
+  padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600;
+}
+.pd-section-title { font-size: 16px; letter-spacing: 0.05em; }
+
+.pd-body { color: #aaa; line-height: 1.7; font-size: 14px; }
+
+.ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.ps-card {
+  background: var(--color-surface); border-radius: 16px; padding: 24px;
+  border: 1px solid var(--color-border);
+}
+.ps-card--problem { border-color: #7a1a1a; }
+.ps-card--solution { border-color: #2d5a2d; }
+.ps-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.ps-icon { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; }
+.ps-icon--red { border: 1.5px solid #ef4444; color: #ef4444; }
+.ps-icon--green { border: 1.5px solid var(--color-accent); color: var(--color-accent); }
+.ps-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.ps-card li { color: #ccc; font-size: 13px; padding-left: 20px; position: relative; line-height: 1.5; }
+.ps-card li::before { content: ""; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); }
+.ps-card--problem li::before { background: #ef4444; }
+
+.role-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+.role-item {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: 12px; padding: 16px 8px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.role-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1.5px solid var(--color-accent); color: var(--color-accent);
+  display: grid; place-items: center;
+}
+.role-label { color: #fff; font-size: 12px; }
+
+.process-line { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.pl-item { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; position: relative; }
+.pl-node {
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 2px solid var(--color-accent); color: var(--color-accent);
+  display: grid; place-items: center;
+}
+.pl-label { color: #ccc; font-size: 13px; }
+.pl-arrow { position: absolute; right: -10px; top: 18px; color: var(--color-accent); font-size: 20px; }
+
+.showcase {
+  aspect-ratio: 16/9; border-radius: 16px; background: #1a1a1a;
+  display: grid; place-items: center; color: #666;
+}
+
+.outcome-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.outcome-card {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: 16px; padding: 20px;
+}
+.outcome-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1.5px solid var(--color-accent); color: var(--color-accent);
+  display: grid; place-items: center; margin-bottom: 16px;
+}
+.outcome-value { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
+.outcome-label { color: #999; font-size: 13px; }
+
+@media (max-width: 900px) {
+  .pd-head, .ps-grid { grid-template-columns: 1fr; }
+  .role-grid { grid-template-columns: repeat(2, 1fr); }
+  .outcome-grid { grid-template-columns: 1fr 1fr; }
+  .pd-meta { grid-template-columns: 1fr 1fr; gap: 20px; }
+}

@@ -1,0 +1,65 @@
+.skills-page { display: flex; flex-direction: column; gap: 38px; width: 100%; }
+
+.skills-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; }
+.skills-head .page-header { margin-bottom: 0; }
+
+.skills-tabs {
+  display: inline-flex; padding: 6px; border: 1px solid var(--color-accent);
+  border-radius: 999px; gap: 4px;
+}
+.tab {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 26px; border-radius: 999px;
+  color: #fff; font-weight: 600; font-size: 14px;
+  border: 1px solid transparent;
+}
+.tab.is-active { background: var(--color-accent); color: #000; }
+.tab:not(.is-active) { border-color: var(--color-accent); color: #fff; }
+
+.skills-section-head {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 32px;
+}
+.skills-section-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1.5px solid var(--color-accent); color: var(--color-accent);
+  display: grid; place-items: center; font-size: 14px;
+}
+.skills-section-title { font-size: 22px; }
+.skills-section-dash {
+  flex: 1; height: 1px;
+  background-image: linear-gradient(to right, #444 50%, transparent 0%);
+  background-size: 8px 1px; background-repeat: repeat-x;
+}
+
+.skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px 60px; }
+
+/* Invisible placeholder to keep grid size fixed when dev tab has fewer items */
+.skill-bar-placeholder {
+  height: 40px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Fade-in animation on tab switch via key prop */
+@keyframes skills-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.skills-grid,
+.tools-row {
+  animation: skills-fade-in 0.25s ease both;
+}
+
+.tools-row { display: flex; flex-wrap: wrap; gap: 40px; }
+.tool-chip {
+  display: inline-flex; align-items: center; gap: 12px;
+  color: #fff; font-size: 15px;
+}
+.tool-badge {
+  width: 40px; height: 40px; border-radius: 10px;
+  color: #fff; font-weight: 800; display: grid; place-items: center;
+}
+
+@media (max-width: 900px) {
+  .skills-grid { grid-template-columns: 1fr; }
+}

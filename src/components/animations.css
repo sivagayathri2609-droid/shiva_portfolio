@@ -1,0 +1,64 @@
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL SCROLL ANIMATION SYSTEM
+   Usage: add data-anim="fade-up" (or other type) to any element
+   Optionally add data-anim-delay="200" for ms delay
+   Optionally add data-anim-duration="600" for ms duration
+════════════════════════════════════════════════════════════ */
+
+/* ── Base hidden state ── */
+[data-anim] {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 600ms;
+  transition-delay: 0ms;
+}
+
+/* Apply delays from data attribute via CSS custom property */
+[data-anim][data-anim-delay="100"] { transition-delay: 100ms; }
+[data-anim][data-anim-delay="150"] { transition-delay: 150ms; }
+[data-anim][data-anim-delay="200"] { transition-delay: 200ms; }
+[data-anim][data-anim-delay="250"] { transition-delay: 250ms; }
+[data-anim][data-anim-delay="300"] { transition-delay: 300ms; }
+[data-anim][data-anim-delay="350"] { transition-delay: 350ms; }
+[data-anim][data-anim-delay="400"] { transition-delay: 400ms; }
+[data-anim][data-anim-delay="450"] { transition-delay: 450ms; }
+[data-anim][data-anim-delay="500"] { transition-delay: 500ms; }
+[data-anim][data-anim-delay="600"] { transition-delay: 600ms; }
+[data-anim][data-anim-delay="700"] { transition-delay: 700ms; }
+
+/* ── Animation start states ── */
+[data-anim="fade-up"]    { transform: translateY(40px); }
+[data-anim="fade-down"]  { transform: translateY(-40px); }
+[data-anim="fade-left"]  { transform: translateX(-50px); }
+[data-anim="fade-right"] { transform: translateX(50px); }
+[data-anim="zoom-in"]    { transform: scale(0.88); }
+[data-anim="zoom-out"]   { transform: scale(1.08); }
+[data-anim="flip-x"]     { transform: rotateX(20deg); }
+
+/* ── Visible state — all animations end here ── */
+[data-anim].anim--visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Stagger helpers for lists ── */
+.anim-stagger > *[data-anim] { }
+.anim-stagger > *:nth-child(1)[data-anim] { transition-delay: 50ms;  }
+.anim-stagger > *:nth-child(2)[data-anim] { transition-delay: 150ms; }
+.anim-stagger > *:nth-child(3)[data-anim] { transition-delay: 250ms; }
+.anim-stagger > *:nth-child(4)[data-anim] { transition-delay: 350ms; }
+.anim-stagger > *:nth-child(5)[data-anim] { transition-delay: 450ms; }
+.anim-stagger > *:nth-child(6)[data-anim] { transition-delay: 550ms; }
+.anim-stagger > *:nth-child(7)[data-anim] { transition-delay: 650ms; }
+.anim-stagger > *:nth-child(8)[data-anim] { transition-delay: 750ms; }
+
+/* ── Reduced motion: skip animations ── */
+@media (prefers-reduced-motion: reduce) {
+  [data-anim] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

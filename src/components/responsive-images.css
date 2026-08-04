@@ -1,0 +1,53 @@
+/* ═══════════════════════════════════════════════════
+   Responsive image rules — shared across all sections
+   768px  → 50% width, centered
+   ≤425px → 100% width
+════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  /* ── Hero banner image ── */
+  .hero-image-wrap {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  /* ── About section portrait (Home + About page) ── */
+  .about-portrait-wrap,
+  .home-about .about-portrait-wrap {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  /* ── Why Choose Me illustration ── */
+  .why-illustration {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  /* ── Experience photo (About page) ── */
+  .experience-photo {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  /* ── Contact image ── */
+  .contact-image {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 426px) {
+
+  /* ── All images go full width below 425px ── */
+  .hero-image-wrap,
+  .about-portrait-wrap,
+  .home-about .about-portrait-wrap,
+  .why-illustration,
+  .experience-photo,
+  .contact-image {
+    width: 100%;
+    margin: 0 auto;
+  }
+}

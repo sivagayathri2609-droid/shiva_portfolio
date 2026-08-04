@@ -1,0 +1,116 @@
+.sidebar {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 78px;
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 40;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.sidebar-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  display: grid;
+  place-items: center;
+  color: #000;
+  font-family: var(--font-script);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  align-items: center;
+}
+
+.sidebar-item {
+  width: 60px;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: #333;
+  border-radius: 14px;
+  transition: background 0.2s;
+}
+
+.sidebar-item:hover { background: #f2f2f2; }
+
+.sidebar-icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #111;
+}
+
+.sidebar-item.is-active .sidebar-icon {
+  background: #000;
+  color: #fff;
+}
+
+.sidebar-label {
+  font-size: 10px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* ── Mobile: bottom pill nav ── */
+@media (max-width: 768px) {
+  .sidebar {
+    right: 50%;
+    top: auto;
+    bottom: 16px;
+    transform: translateX(50%);
+    flex-direction: row;
+    width: auto;
+    border-radius: 999px;
+    padding: 8px 12px;
+  }
+  .sidebar-logo { display: none; }
+  .sidebar-nav {
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 2px;
+  }
+  .sidebar-item {
+    width: auto;
+    min-width: 44px;
+    flex: 1;
+    padding: 6px 4px;
+  }
+  .sidebar-label { font-size: 9px; white-space: nowrap; }
+}
+
+/* ── Very small screens (< 320px): fixed 300px width ── */
+@media (max-width: 319px) {
+  .sidebar {
+    width: 300px;
+    right: 50%;
+    transform: translateX(50%);
+    padding: 6px 8px;
+  }
+  .sidebar-nav { gap: 0; }
+  .sidebar-item {
+    padding: 6px 2px;
+    min-width: 44px;
+  }
+  .sidebar-icon { width: 30px; height: 30px; }
+  .sidebar-label { font-size: 8px; }
+}

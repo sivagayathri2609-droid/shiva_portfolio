@@ -1,0 +1,136 @@
+.about-page { display: flex; flex-direction: column; }
+
+/* WHO */
+.about-hero-section { }
+.about-hero {
+  display: grid; grid-template-columns: 380px 1fr; gap: 60px; align-items: center;
+  width: 100%;
+}
+.about-portrait-wrap {
+  position: relative; border-radius: 24px; overflow: hidden;
+  aspect-ratio: 1;
+}
+.about-portrait { width: 100%; height: 100%; object-fit: cover; }
+.about-tags {
+  position: absolute; left: 12px; right: 12px; bottom: 12px;
+  display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+}
+.about-tag { padding: 6px 14px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+.about-tag--dark { background: #000; color: #fff; }
+.about-tag--accent { background: var(--color-accent); color: #000; }
+
+.about-title { font-size: clamp(38px, 4.5vw, 56px); margin: 12px 0 20px; }
+.about-text { color: #bbb; font-size: 15px; line-height: 1.7;  }
+.about_para { margin-bottom: 20px;}
+.about-sig { font-size: 26px; margin-top: 16px; display: inline-block; }
+
+/* VISION / MISSION */
+.vision-mission-section { }
+.vision-mission { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%;     margin-top: 30px;}
+.vm-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 24px;
+  display: grid; grid-template-columns: 44px 1fr; gap: 16px;
+}
+.vm-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1.5px solid var(--color-accent); color: var(--color-accent);
+  display: grid; place-items: center;
+}
+.vm-title { font-size: 18px; margin-bottom: 6px; }
+.vm-text { color: #aaa; font-size: 14px; line-height: 1.5; }
+
+/* EXPERIENCE */
+.experience-grid {
+  display: grid;
+  grid-template-columns: 350px 1fr 310px;
+  gap: 32px;
+  align-items: start;
+  margin-top: 10px;
+}
+.experience-photo img { border-radius: 20px; width: 100%; }
+.experience-info { padding-left: 30px; border-left: 1px dashed #333; position: relative; }
+.experience-role { font-size: 22px; margin-bottom: 20px; }
+.experience-company { font-weight: 600; margin-bottom: 20px; }
+.experience-date {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--color-accent); font-size: 13px; padding: 6px 12px;
+  border: 1px solid #333; border-radius: 8px; margin-bottom: 20px;
+}
+.experience-text { color: #aaa; font-size: 14px; line-height: 1.6; margin-bottom: 30px; }
+.experience-stats { display: flex; gap: 130px; }
+.exp-stat { display: flex; flex-direction: column; gap: 4px; align-items: center; color: var(--color-accent); }
+.exp-stat-num { font-size: 26px; font-weight: 800; color: #fff; font-family: overlock; }
+.exp-stat-label { font-size: 11px; color: #999; text-align: center;}
+
+.experience-tasks { display: flex; flex-direction: column; gap: 10px; }
+.task-chip {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: 10px; padding: 18px 14px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 14px; color: #fff;
+}
+.task-icon { color: var(--color-accent); }
+.task-more { margin-left: auto; color: var(--color-accent); letter-spacing: 2px; }
+
+/* PROCESS TIMELINE */
+.process-timeline {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+  padding: 20px 0; position: relative;
+  margin-top: 10px;
+}
+.process-step {
+  position: relative; text-align: center;
+  padding: 60px 8px 0;
+}
+.process-node {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 60px; height: 60px; border-radius: 50%;
+  border: 2px dashed var(--color-accent); color: var(--color-accent);
+  display: grid; place-items: center; background: #000;
+  z-index: 2;
+}
+.process-connector {
+  position: absolute; top: 30px; left: calc(50% + 30px); right: calc(-50% + 30px);
+  height: 2px;
+  background-image: linear-gradient(to right, var(--color-accent) 50%, transparent 0%);
+  background-size: 8px 2px; background-repeat: repeat-x;
+}
+.process-num { display: block; color: #888; font-size: 12px; margin-bottom: 4px; margin-top: 20px;}
+.process-title { font-size: 18px; margin-bottom: 6px; }
+.process-text { color: #999; font-size: 12px; line-height: 1.5; }
+
+@media (max-width: 900px) {
+  .about-hero, .vision-mission, .experience-grid { grid-template-columns: 1fr; }
+  .process-timeline { grid-template-columns: 1fr; }
+  .process-connector { display: none; }
+  .process-step { padding-left: 80px; padding-top: 0; text-align: left; min-height: 80px; }
+  .process-node { left: 30px; top: 0; transform: none; }
+}
+
+@media (max-width: 426px) {
+  /* Experience info — remove left border/padding, stack cleanly */
+  .experience-info {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px dashed #333;
+    padding-top: 20px;
+  }
+
+  /* Stats row — reduce huge gap */
+  .experience-stats { gap: 24px; justify-content: space-around; }
+
+  /* Task chips — smaller padding */
+  .task-chip { padding: 12px 10px; font-size: 13px; }
+
+  /* Vision/mission cards — single column */
+  .vision-mission { grid-template-columns: 1fr; }
+
+  /* Process steps — compact */
+  .process-step { padding-left: 60px; min-height: 70px; }
+  .process-node { width: 48px; height: 48px; left: 6px; }
+  .process-title { font-size: 15px; }
+  .process-text  { font-size: 11px; }
+}
