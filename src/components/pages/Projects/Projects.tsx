@@ -12,8 +12,8 @@ import "./Projects.css";
 
 export const projects = [
   { id: "neobase",            name: "NeoBase",            subtitle: "Investment Platform", role: "UX/UI Designer", duration: "6 Months", tags: ["FinTech", "Dashboard", "Responsive"], color: "#7A40DE", image: banner1 },
-  { id: "100-days-lifestyle", name: "Mythrey", subtitle: "Wellness Challenge",  role: "UX/UI Designer", duration: "1 Months", tags: ["Lifestyle", "Mobile", "iOS"],         color: "#22C55E", image: banner2 },
-  { id: "techneat",           name: "TechNeat",           subtitle: "SaaS Dashboard",      role: "UX/UI Designer", duration: "3 Months", tags: ["SaaS", "Web", "Dashboard"],           color: "#f59e0b", image: banner3 },
+  { id: "100-days-lifestyle", name: "Mythrey", subtitle: "Medical E-commerce",  role: "UX/UI Designer", duration: "1 Months", tags: ["Doctor Consultation", "HealthTech", "Medical E-commerce"],         color: "#22C55E", image: banner2 },
+  { id: "techneat",           name: "ArogyaNet",           subtitle: "Smart Medical Records Management App",      role: "UX/UI Designer", duration: "3 Months", tags: ["HealthTech", "Medical Records", "AI Healthcare"],           color: "#f59e0b", image: banner3 },
   { id: "eventro",            name: "Eventro",            subtitle: "Event Management",    role: "UX/UI Designer", duration: "4 Months", tags: ["Events", "Mobile", "Web"],            color: "#ef4444", image: banner4 },
   { id: "novaride",           name: "NovaRide",           subtitle: "Ride Sharing",        role: "UX/UI Designer", duration: "4 Months", tags: ["Mobile", "Maps", "Realtime"],         color: "#165B9A", image: banner5 },
 ];
