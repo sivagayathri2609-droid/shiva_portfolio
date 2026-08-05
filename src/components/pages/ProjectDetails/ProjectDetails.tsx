@@ -140,7 +140,7 @@ export function ProjectDetails() {
             <div><p className="pd-meta-label">INDUSTRY</p><p className="pd-meta-val">{data.industry}</p></div>
           </div>
           <div className="pd-cta">
-            <Button variant="primary">View Prototype</Button>
+            {/* <Button variant="primary">View Prototype</Button> */}
             {/* <Button variant="outline">Live Website</Button> */}
           </div>
         </div>
@@ -193,9 +193,9 @@ export function ProjectDetails() {
         </div>
       </Section>
 
-      <Section num="05" title="FINAL UI SHOWCASE">
+      {/* <Section num="05" title="FINAL UI SHOWCASE">
         <div className="showcase">UI Showcase — {data.title}{data.titleAccent}</div>
-      </Section>
+      </Section> */}
 
       <Section num="06" title="OUTCOME">
         <div className="outcome-grid">

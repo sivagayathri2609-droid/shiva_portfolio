@@ -69,9 +69,9 @@ export function Home() {
             </div>
             <div className="hero-clients">
               <div className="hero-avatars">
-                <span className="avatar-blob"><img src="/avatar-1.png" alt="Client" onError={e => { (e.currentTarget as HTMLImageElement).style.display="none"; }} /></span>
-                <span className="avatar-blob"><img src="/avatar-2.png" alt="Client" onError={e => { (e.currentTarget as HTMLImageElement).style.display="none"; }} /></span>
-                <span className="avatar-blob"><img src="/avatar-3.png" alt="Client" onError={e => { (e.currentTarget as HTMLImageElement).style.display="none"; }} /></span>
+                <span className="avatar-blob"><img src="src/assets/avatar-1.jpg" alt="Client" onError={e => { (e.currentTarget as HTMLImageElement).style.display="none"; }} /></span>
+                <span className="avatar-blob"><img src="src/assets/avatar-2.jpg" alt="Client" onError={e => { (e.currentTarget as HTMLImageElement).style.display="none"; }} /></span>
+                <span className="avatar-blob"><img src="src/assets/avatar-3.jpg" alt="Client" onError={e => { (e.currentTarget as HTMLImageElement).style.display="none"; }} /></span>
                 <span className="avatar-blob avatar-blob--accent">+</span>
               </div>
               <p className="hero-clients-num">30+ Clients Worldwide</p>
