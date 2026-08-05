@@ -11,8 +11,8 @@ import banner5 from "@/assets/pro_banner5.png";
 import "./Projects.css";
 
 export const projects = [
-  { id: "neobase",            name: "NeoBase",            subtitle: "Investment Platform", role: "UX/UI Designer", duration: "3 Months", tags: ["FinTech", "Dashboard", "Responsive"], color: "#7A40DE", image: banner1 },
-  { id: "100-days-lifestyle", name: "100 Days Lifestyle", subtitle: "Wellness Challenge",  role: "UX/UI Designer", duration: "2 Months", tags: ["Lifestyle", "Mobile", "iOS"],         color: "#22C55E", image: banner2 },
+  { id: "neobase",            name: "NeoBase",            subtitle: "Investment Platform", role: "UX/UI Designer", duration: "6 Months", tags: ["FinTech", "Dashboard", "Responsive"], color: "#7A40DE", image: banner1 },
+  { id: "100-days-lifestyle", name: "Mythrey", subtitle: "Wellness Challenge",  role: "UX/UI Designer", duration: "1 Months", tags: ["Lifestyle", "Mobile", "iOS"],         color: "#22C55E", image: banner2 },
   { id: "techneat",           name: "TechNeat",           subtitle: "SaaS Dashboard",      role: "UX/UI Designer", duration: "3 Months", tags: ["SaaS", "Web", "Dashboard"],           color: "#f59e0b", image: banner3 },
   { id: "eventro",            name: "Eventro",            subtitle: "Event Management",    role: "UX/UI Designer", duration: "4 Months", tags: ["Events", "Mobile", "Web"],            color: "#ef4444", image: banner4 },
   { id: "novaride",           name: "NovaRide",           subtitle: "Ride Sharing",        role: "UX/UI Designer", duration: "4 Months", tags: ["Mobile", "Maps", "Realtime"],         color: "#165B9A", image: banner5 },
