@@ -81,12 +81,12 @@ const projectData: Record<string, {
     ],
   },
   "novaride": {
-    title: "Nova", titleAccent: "Ride",
-    subtitle: "Ride Sharing Platform",
-    summary: "A modern ride-sharing platform with real-time tracking and seamless booking experience.",
-    role: "UX/UI Designer", duration: "4 Months", platform: "iOS & Android", industry: "Transport",
-    overview: "NovaRide is a ride-sharing mobile application that provides users with fast, safe, and affordable rides. The design focuses on a frictionless booking experience, real-time driver tracking, and transparent pricing.",
-    problems: ["Confusing booking flow with too many steps.", "No real-time ETA or driver location updates.", "Lack of transparent pricing before booking.", "Poor safety features for solo riders."],
+    title: "JMR", titleAccent: "iFarms",
+    subtitle: "Smart Agriculture",
+    summary: "A modern website that showcases the JMR iFarms smart vertical farming unit, highlighting its technology, features, and benefits through a clean, interactive, and user-friendly experience.",
+    role: "UX/UI Designer , Developer", duration: "4 Days", platform: "Product Showcase Website", industry: "AgriTech",
+    overview: "The client wanted a website to showcase the JMR iFarms smart vertical farming unit and explain its technology and benefits. I independently designed and developed the complete website, creating a clean information architecture, intuitive user flow, modern UI, and responsive frontend. The website presents the product's features, working process, and advantages through interactive sections and smooth animations, making it easy for users to understand the value of the smart farming solution.",
+    problems: ["Existing websites did not clearly explain the product benefits.", "Product information was difficult to understand.", "", "", ""],
     solutions: ["One-tap booking with smart destination prediction.", "Live GPS tracking with accurate ETA.", "Upfront fare estimation before confirmation.", "SOS button, trip sharing, and driver verification."],
     outcomes: [
       { icon: TrendingUp, value: "65%", label: "Increase in booking completion" },

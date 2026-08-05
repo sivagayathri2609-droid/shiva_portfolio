@@ -14,8 +14,8 @@ export const projects = [
   { id: "neobase",            name: "NeoBase",            subtitle: "Investment Platform", role: "UX/UI Designer", duration: "6 Months", tags: ["FinTech", "Dashboard", "Responsive"], color: "#7A40DE", image: banner1 },
   { id: "100-days-lifestyle", name: "Mythrey", subtitle: "Medical E-commerce",  role: "UX/UI Designer", duration: "1 Months", tags: ["Doctor Consultation", "HealthTech", "Medical E-commerce"],         color: "#22C55E", image: banner2 },
   { id: "techneat",           name: "ArogyaNet",           subtitle: "Smart Medical Records Management App",      role: "UX/UI Designer", duration: "3 Months", tags: ["HealthTech", "Medical Records", "AI Healthcare"],           color: "#f59e0b", image: banner3 },
-  { id: "eventro",            name: "Eventro",            subtitle: "Event Management",    role: "UX/UI Designer", duration: "4 Months", tags: ["Events", "Mobile", "Web"],            color: "#ef4444", image: banner4 },
-  { id: "novaride",           name: "NovaRide",           subtitle: "Ride Sharing",        role: "UX/UI Designer", duration: "4 Months", tags: ["Mobile", "Maps", "Realtime"],         color: "#165B9A", image: banner5 },
+  // { id: "eventro",            name: "Eventro",            subtitle: "Event Management",    role: "UX/UI Designer", duration: "4 Months", tags: ["Events", "Mobile", "Web"],            color: "#ef4444", image: banner4 },
+  { id: "novaride",           name: "JMR iFarms",           subtitle: "Micro Green Unit",        role: "UX/UI Designer , Development", duration: "4 Days", tags: ["AgriTech", "Vertical Farming", "Smart Agriculture"],         color: "#165B9A", image: banner5 },
 ];
 
 const ANIM_DURATION = 820; // ms — lock duration matches CSS
