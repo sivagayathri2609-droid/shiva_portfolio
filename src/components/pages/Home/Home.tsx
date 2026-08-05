@@ -92,7 +92,7 @@ export function Home() {
               <div className="hero-fact">
                 <span className="hero-fact-icon"><Briefcase size={14} /></span>
                 <span className="hero-fact-label">Experience</span>
-                <span className="hero-fact-pill">2+ Years</span>
+                <span className="hero-fact-pill">1+ Years</span>
               </div>
               <div className="hero-fact">
                 <span className="hero-fact-icon"><Sparkles size={14} /></span>
