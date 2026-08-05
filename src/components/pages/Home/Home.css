@@ -119,13 +119,17 @@
 }
 .social-be { font-weight: 700; font-size: 12px; }
 
-.hero-avatars { display: flex; margin-bottom: 8px; }
+.hero-avatars { display: flex; margin-bottom: 8px; justify-content: center; }
 .avatar-blob {
   width: 32px; height: 32px; border-radius: 50%;
   background: #333; border: 2px solid #000;
   margin-left: -8px;
   display: grid; place-items: center;
   font-size: 14px; color: #000; font-weight: 700;
+  overflow: hidden;
+}
+.avatar-blob img {
+  width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;
 }
 .avatar-blob:first-child { margin-left: 0; }
 .avatar-blob--accent { background: var(--color-accent); }

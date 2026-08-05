@@ -26,52 +26,155 @@
   height: 375px;
 }
 
-/* ── Base card — image only ── */
+/* ─────────────────────────────────────────────
+   PREMIUM EASING — used everywhere below
+   cubic-bezier(0.22, 1, 0.36, 1) = easeOutExpo
+───────────────────────────────────────────── */
+
+/* ── Base card ── */
 .project-card {
+  position: relative;
   height: 375px;
-  border-radius: 24px;
+  border-radius: 28px;
   background: var(--card-color);
   flex-shrink: 0;
-  will-change: width, opacity, filter;
-  transition:
-    width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    filter 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateZ(0); /* GPU layer */
   overflow: hidden;
+
+  /* All animated properties in one declaration — GPU-only where possible */
+  will-change: transform, opacity, filter, flex, box-shadow;
+  transition:
+    flex          820ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity       700ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter        700ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow    700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform     820ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 820ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Force GPU compositor layer */
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
-/* ── Inactive: narrow, dimmed ── */
+/* ── Image inside card ── */
+.project-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition: transform 820ms cubic-bezier(0.22, 1, 0.36, 1);
+  backface-visibility: hidden;
+}
+
+/* ── Dark overlay ── */
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+  border-radius: inherit;
+  pointer-events: none;
+  transition: background 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── INACTIVE — narrow, dimmed ── */
 .project-card--inactive {
-  width: 72px;
-  opacity: 0.5;
-  filter: brightness(0.6) saturate(0.6);
+  flex: 0 0 72px;
+  opacity: 0.45;
+  filter: brightness(0.55) saturate(0.4);
+  transform: translate3d(0, 0, 0) scale(0.97);
   cursor: pointer;
+  border-radius: 20px;
+}
+.project-card--inactive::after {
+  background: rgba(0, 0, 0, 0.45);
+}
+.project-card--inactive .project-card-image {
+  transform: translate3d(0, 0, 0) scale(1.08); /* subtle zoom-out reveal on expand */
 }
 .project-card--inactive:hover {
-  opacity: 0.75;
-  filter: brightness(0.8) saturate(0.85);
+  opacity: 0.7;
+  filter: brightness(0.8) saturate(0.7);
+  transform: translate3d(0, 0, 0) scale(0.99);
   transition:
-    opacity 0.2s ease,
-    filter 0.2s ease,
-    width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity       200ms ease,
+    filter        200ms ease,
+    transform     200ms ease,
+    flex          820ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 820ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ── Active: wide, full color ── */
+/* ── ACTIVE — expanded, full quality ── */
 .project-card--active {
   flex: 1;
   opacity: 1;
   filter: brightness(1) saturate(1);
-  cursor: pointer;
+  transform: translate3d(0, 0, 0) scale(1);
+  cursor: default;
+  border-radius: 28px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    0 2px 8px  rgba(0, 0, 0, 0.25);
+}
+.project-card--active::after {
+  background: rgba(0, 0, 0, 0.22);
+}
+.project-card--active .project-card-image {
+  transform: translate3d(0, 0, 0) scale(1);
 }
 
-/* ── Meta strip ── */
+/* Hover pan on active card image */
+.project-card--active:hover .project-card-image {
+  transform: translate3d(0, -8px, 0) scale(1.06);
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.project-card--active:hover {
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 4px 16px  rgba(0, 0, 0, 0.3);
+  transition:
+    box-shadow    400ms ease,
+    flex          820ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity       700ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter        700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform     820ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 820ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── LEAVING — card that just lost active state ──
+   Plays the shrink animation explicitly              */
+.project-card--leaving {
+  flex: 0 0 72px;
+  opacity: 0.45;
+  filter: brightness(0.55) saturate(0.4);
+  transform: translate3d(0, 0, 0) scale(0.97);
+  border-radius: 20px;
+}
+.project-card--leaving .project-card-image {
+  transform: translate3d(0, 0, 0) scale(1.08);
+}
+.project-card--leaving::after {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* ── Meta strip fade on change ── */
 .projects-meta {
   display: grid;
   grid-template-columns: auto auto auto 1fr auto;
   gap: 24px;
   align-items: center;
+  animation: meta-fade 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+@keyframes meta-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* ── Meta strip ── */
 .pm-name { font-size: 20px; margin-bottom: 2px; }
 .pm-sub  { color: #ccc; font-size: 14px; }
 .pm-block--icon { display: flex; align-items: center; gap: 12px; }
@@ -90,7 +193,8 @@
 
 /* ── Tablet ── */
 @media (max-width: 1024px) {
-  .project-card--inactive { width: 56px; }
+  .project-card--inactive,
+  .project-card--leaving { flex: 0 0 56px; }
   .projects-meta { grid-template-columns: 1fr 1fr; }
 }
 
@@ -98,36 +202,35 @@
 @media (max-width: 600px) {
   .projects-carousel { grid-template-columns: 36px 1fr 36px; gap: 8px; }
   .projects-track { gap: 8px; }
-  .project-card--inactive { width: 40px; }
+  .project-card--inactive,
+  .project-card--leaving { flex: 0 0 40px; }
   .projects-meta { grid-template-columns: 1fr; }
 }
 
 /* ── Small mobile 425px ── */
 @media (max-width: 426px) {
-  /* Arrows smaller, less gap */
   .projects-carousel { grid-template-columns: 36px 1fr 36px; gap: 6px; }
 
-  /* Hide ALL inactive cards — show only the active card */
-  .project-card--inactive { display: none; }
+  /* Hide inactive — show only active */
+  .project-card--inactive,
+  .project-card--leaving { display: none; }
 
-  /* Active card takes full track width */
   .project-card--active {
     flex: 1;
-    width: 100%;
     height: 280px;
   }
   .projects-track { height: 280px; gap: 0; }
 
-  /* Arrow buttons — ensure they stay visible and touchable */
-  .carousel-arrow {
-    width: 36px;
-    height: 36px;
-    flex-shrink: 0;
-  }
+  .carousel-arrow { width: 36px; height: 36px; flex-shrink: 0; }
 
-  /* Meta strip — single column */
-  .projects-meta {
-    grid-template-columns: 1fr;
-    gap: 12px;
+  .projects-meta { grid-template-columns: 1fr; gap: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-card-image {
+    transition: none !important;
+    animation: none !important;
   }
+  .projects-meta { animation: none !important; }
 }

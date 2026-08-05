@@ -1,7 +1,9 @@
 import { useParams, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { AlertCircle, CheckCircle2, Users, Workflow, LayoutGrid, Palette, Settings, PlayCircle, Code2, Search, PenTool, MousePointer, Check, TrendingUp, Zap, Target, Cpu, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/Button/Button";
 import { projects } from "@/components/pages/Projects/Projects";
+import { useInView } from "@/hooks/use-in-view";
 import "./ProjectDetails.css";
 
 const projectData: Record<string, {
@@ -117,15 +119,16 @@ export function ProjectDetails() {
   const { id } = useParams({ from: "/projects/$id" });
   const data = projectData[id] ?? projectData["neobase"];
   const project = projects.find((p) => p.id === id);
+  const { ref: pageRef, inView: pageIn } = useInView<HTMLDivElement>({ threshold: 0.05 });
 
   return (
-    <div className="page-section pd">
+    <div ref={pageRef} className={`page-section pd ${pageIn ? "anim-in" : ""}`}>
       {/* Back button */}
-      <Link to="/projects" className="pd-back">
+      <Link to="/projects" className="pd-back anim-child anim-child--1">
         <ArrowLeft size={16} /> Back to Projects
       </Link>
 
-      <header className="pd-head">
+      <header className="pd-head anim-child anim-child--2">
         <div>
           <h1 className="pd-name">{data.title}<span className="accent">{data.titleAccent}</span></h1>
           <p className="pd-subtitle">{data.subtitle}</p>
@@ -138,15 +141,15 @@ export function ProjectDetails() {
           </div>
           <div className="pd-cta">
             <Button variant="primary">View Prototype</Button>
-            <Button variant="outline">Live Website</Button>
+            {/* <Button variant="outline">Live Website</Button> */}
           </div>
         </div>
         <div className="pd-hero-img">
-          <div className="pd-hero-placeholder" style={{ background: project?.color ?? "#333" }}>
-            <span style={{ fontSize: 48, fontWeight: 900, color: "#fff", opacity: 0.9 }}>
-              {project?.name?.[0] ?? "P"}
-            </span>
-          </div>
+          <ProjectBanner
+            image={project?.image}
+            name={project?.name ?? "P"}
+            color={project?.color ?? "#333"}
+          />
         </div>
       </header>
 
@@ -209,9 +212,39 @@ export function ProjectDetails() {
   );
 }
 
-function Section({ num, title, children }: { num: string; title: string; children: React.ReactNode }) {
+function ProjectBanner({ image, name, color }: { image?: string; name: string; color: string }) {
+  const [loaded, setLoaded]   = useState(false);
+  const [errored, setErrored] = useState(false);
+
   return (
-    <section className="pd-section">
+    <div className="pd-banner" style={{ "--banner-color": color } as React.CSSProperties}>
+      {!loaded && !errored && <div className="pd-banner-skeleton" />}
+      {image && !errored && (
+        <img
+          src={image}
+          alt={name}
+          loading="lazy"
+          className={`pd-banner-img ${loaded ? "pd-banner-img--loaded" : ""}`}
+          onLoad={() => setLoaded(true)}
+          onError={() => setErrored(true)}
+          draggable={false}
+        />
+      )}
+      {(errored || !image) && (
+        <div className="pd-banner-fallback">
+          <span className="pd-banner-initial">{name[0]}</span>
+          <span className="pd-banner-fallback-label">{name}</span>
+        </div>
+      )}
+      <div className="pd-banner-overlay" />
+    </div>
+  );
+}
+
+function Section({ num, title, children }: { num: string; title: string; children: React.ReactNode }) {
+  const { ref, inView } = useInView<HTMLElement>({ threshold: 0.1 });
+  return (
+    <section ref={ref} className={`pd-section anim-child ${inView ? "anim-section-in" : ""}`}>
       <div className="pd-section-head">
         <span className="pd-section-num">{num}</span>
         <h2 className="pd-section-title accent">{title}</h2>

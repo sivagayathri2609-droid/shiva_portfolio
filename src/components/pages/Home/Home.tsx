@@ -63,15 +63,15 @@ export function Home() {
             <div className="hero-follow">
               <p className="hero-follow-label">Follow Me On</p>
               <div className="hero-follow-icons">
-                <a href="#" className="social-chip"><Linkedin size={16} /></a>
-                <a href="#" className="social-chip"><span className="social-be">Be</span></a>
+                {/* <a href="#" className="social-chip"><Linkedin size={16} /></a> */}
+                <a href="https://www.behance.net/sivagayathriv38" target="_blank" rel="noopener noreferrer" className="social-chip"><span className="social-be">Be</span></a>
               </div>
             </div>
             <div className="hero-clients">
               <div className="hero-avatars">
-                <span className="avatar-blob" />
-                <span className="avatar-blob" />
-                <span className="avatar-blob" />
+                <span className="avatar-blob"><img src="/avatar-1.png" alt="Client" onError={e => { (e.currentTarget as HTMLImageElement).style.display="none"; }} /></span>
+                <span className="avatar-blob"><img src="/avatar-2.png" alt="Client" onError={e => { (e.currentTarget as HTMLImageElement).style.display="none"; }} /></span>
+                <span className="avatar-blob"><img src="/avatar-3.png" alt="Client" onError={e => { (e.currentTarget as HTMLImageElement).style.display="none"; }} /></span>
                 <span className="avatar-blob avatar-blob--accent">+</span>
               </div>
               <p className="hero-clients-num">30+ Clients Worldwide</p>
@@ -105,7 +105,7 @@ export function Home() {
 
         <div className="hero-cta anim-child anim-child--4">
           <Button variant="primary" onClick={handleDownloadResume}>Download Resume</Button>
-          <Button variant="ghost" icon={false}>Hire Me</Button>
+          <Button variant="ghost" icon={false} onClick={() => navigate({ to: "/contact" })}>Hire Me</Button>
         </div>
       </section>
 

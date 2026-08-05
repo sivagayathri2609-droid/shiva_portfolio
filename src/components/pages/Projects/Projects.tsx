@@ -1,23 +1,54 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight, PenTool, Clock } from "lucide-react";
 import { Button } from "@/components/Button/Button";
 import { PageHeader } from "@/components/PageHeader/PageHeader";
+import banner1 from "@/assets/pro_banner1.png";
+import banner2 from "@/assets/pro_banner2.png";
+import banner3 from "@/assets/pro_banner3.png";
+import banner4 from "@/assets/pro_banner4.png";
+import banner5 from "@/assets/pro_banner5.png";
 import "./Projects.css";
 
 export const projects = [
-  { id: "neobase",            name: "NeoBase",            subtitle: "Investment Platform", role: "UX/UI Designer", duration: "3 Months", tags: ["FinTech", "Dashboard", "Responsive"], color: "#7c3aed" },
-  { id: "100-days-lifestyle", name: "100 Days Lifestyle", subtitle: "Wellness Challenge",  role: "UX/UI Designer", duration: "2 Months", tags: ["Lifestyle", "Mobile", "iOS"],         color: "#10b981" },
-  { id: "techneat",           name: "TechNeat",           subtitle: "SaaS Dashboard",      role: "UX/UI Designer", duration: "3 Months", tags: ["SaaS", "Web", "Dashboard"],           color: "#f59e0b" },
-  { id: "eventro",            name: "Eventro",            subtitle: "Event Management",    role: "UX/UI Designer", duration: "4 Months", tags: ["Events", "Mobile", "Web"],            color: "#ef4444" },
-  { id: "novaride",           name: "NovaRide",           subtitle: "Ride Sharing",        role: "UX/UI Designer", duration: "4 Months", tags: ["Mobile", "Maps", "Realtime"],         color: "#06b6d4" },
+  { id: "neobase",            name: "NeoBase",            subtitle: "Investment Platform", role: "UX/UI Designer", duration: "3 Months", tags: ["FinTech", "Dashboard", "Responsive"], color: "#7A40DE", image: banner1 },
+  { id: "100-days-lifestyle", name: "100 Days Lifestyle", subtitle: "Wellness Challenge",  role: "UX/UI Designer", duration: "2 Months", tags: ["Lifestyle", "Mobile", "iOS"],         color: "#22C55E", image: banner2 },
+  { id: "techneat",           name: "TechNeat",           subtitle: "SaaS Dashboard",      role: "UX/UI Designer", duration: "3 Months", tags: ["SaaS", "Web", "Dashboard"],           color: "#f59e0b", image: banner3 },
+  { id: "eventro",            name: "Eventro",            subtitle: "Event Management",    role: "UX/UI Designer", duration: "4 Months", tags: ["Events", "Mobile", "Web"],            color: "#ef4444", image: banner4 },
+  { id: "novaride",           name: "NovaRide",           subtitle: "Ride Sharing",        role: "UX/UI Designer", duration: "4 Months", tags: ["Mobile", "Maps", "Realtime"],         color: "#165B9A", image: banner5 },
 ];
+
+const ANIM_DURATION = 820; // ms — lock duration matches CSS
 
 export function Projects() {
   const [active, setActive] = useState(0);
+  const [prev2, setPrev2] = useState<number | null>(null); // previously active index
+  const animating = useRef(false);
 
-  const next = () => setActive((a) => (a + 1) % projects.length);
-  const prev = () => setActive((a) => (a - 1 + projects.length) % projects.length);
+  // Drag / swipe
+  const dragStart = useRef<number | null>(null);
+
+  const go = useCallback((next: number) => {
+    if (animating.current) return;
+    animating.current = true;
+    setPrev2(active);
+    setActive(next);
+    setTimeout(() => {
+      animating.current = false;
+      setPrev2(null);
+    }, ANIM_DURATION);
+  }, [active]);
+
+  const goNext = useCallback(() => go((active + 1) % projects.length), [go, active]);
+  const goPrev = useCallback(() => go((active - 1 + projects.length) % projects.length), [go, active]);
+
+  const onPointerDown = (e: React.PointerEvent) => { dragStart.current = e.clientX; };
+  const onPointerUp   = (e: React.PointerEvent) => {
+    if (dragStart.current === null) return;
+    const delta = e.clientX - dragStart.current;
+    dragStart.current = null;
+    if (Math.abs(delta) > 48) delta < 0 ? goNext() : goPrev();
+  };
 
   const p = projects[active];
 
@@ -27,27 +58,45 @@ export function Projects() {
         <PageHeader badge="My Projects" titleStart="My" titleAccent="Projects" align="left" />
       </div>
 
-      <div className="projects-carousel">
-        <button className="carousel-arrow" onClick={prev} aria-label="Previous">
+      <div
+        className="projects-carousel"
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        onPointerLeave={onPointerUp}
+      >
+        <button className="carousel-arrow" onClick={goPrev} aria-label="Previous">
           <ChevronLeft size={22} />
         </button>
 
         <div className="projects-track">
           {projects.map((project, idx) => {
-            const isActive = idx === active;
+            const isActive  = idx === active;
+            const wasActive = idx === prev2;
+
+            let stateClass = "project-card--inactive";
+            if (isActive)  stateClass = "project-card--active";
+            if (wasActive) stateClass = "project-card--leaving";
+
             return (
               <article
                 key={project.id}
-                className={`project-card ${isActive ? "project-card--active" : "project-card--inactive"}`}
+                className={`project-card ${stateClass}`}
                 style={{ "--card-color": project.color } as React.CSSProperties}
-                onClick={() => !isActive && setActive(idx)}
+                onClick={() => !isActive && go(idx)}
                 aria-label={project.name}
-              />
+              >
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  className="project-card-image"
+                  draggable={false}
+                />
+              </article>
             );
           })}
         </div>
 
-        <button className="carousel-arrow" onClick={next} aria-label="Next">
+        <button className="carousel-arrow" onClick={goNext} aria-label="Next">
           <ChevronRight size={22} />
         </button>
       </div>

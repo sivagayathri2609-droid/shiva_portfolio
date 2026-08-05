@@ -2,13 +2,14 @@ import { useState, useCallback } from "react";
 import { Mail, Phone, MapPin, Clock, Loader2, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/Button/Button";
 import { PageHeader } from "@/components/PageHeader/PageHeader";
+import { useInView } from "@/hooks/use-in-view";
 import contactImage from "@/assets/contact-character.png";
 import "./Contact.css";
 
 const contactInfo = [
-  { icon: Mail,    label: "Email",        value: "sivagayathri.design@gmail.com" },
-  { icon: Phone,   label: "Phone",        value: "+91 12345 67890" },
-  { icon: MapPin,  label: "Location",     value: "Coimbatore, Tamil Nadu, India" },
+  { icon: Mail,    label: "Email",        value: "ggayathri4142@gmail.com" },
+  { icon: Phone,   label: "Phone",        value: "+91 7904695594" },
+  { icon: MapPin,  label: "Location",     value: "Nagercoil, Tamil Nadu, India" },
   { icon: Clock,   label: "Availability", value: "Open for new opportunities" },
 ];
 
@@ -63,6 +64,7 @@ export function Contact() {
   const [touched, setTouched] = useState<TouchedState>(EMPTY_TOUCHED);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const { ref: pageRef, inView: pageIn } = useInView<HTMLDivElement>({ threshold: 0.1 });
 
   /* Validate a single field */
   const validateField = useCallback((key: Field, value: string): string => {
@@ -119,10 +121,12 @@ export function Contact() {
   ];
 
   return (
-    <div className="page-section contact-page">
-      <PageHeader badge="Contact" titleStart="Get In" titleAccent="Touch" align="left" />
+    <div ref={pageRef} className={`page-section contact-page ${pageIn ? "anim-in" : ""}`}>
+      <div className="anim-child anim-child--1">
+        <PageHeader badge="Contact" titleStart="Get In" titleAccent="Touch" align="left" />
+      </div>
 
-      <div className="contact-grid">
+      <div className="contact-grid anim-child anim-child--2">
         <form
           className="contact-form"
           onSubmit={handleSubmit}
@@ -218,7 +222,7 @@ export function Contact() {
         </div>
       </div>
 
-      <div className="contact-info">
+      <div className="contact-info anim-child anim-child--3">
         {contactInfo.map(({ icon: Icon, label, value }) => (
           <div key={label} className="ci-item">
             <span className="ci-icon"><Icon size={20} /></span>
