@@ -74,7 +74,7 @@ export function About() {
           <div className="experience-info" data-anim="fade-up" data-anim-delay="150">
             <h3 className="experience-role accent">UX / UI Designer</h3>
             <p className="experience-company">TechNeat Info Solutions</p>
-            <span className="experience-date"><Briefcase size={14} /> June 2025 – Present</span>
+            <span className="experience-date"><Briefcase size={14} /> April 2025 – Present</span>
             <p className="experience-text">Crafting user-centered digital experiences through thoughtful research, intuitive interfaces, and scalable design systems that solve real business challenges.</p>
             <div className="experience-stats anim-stagger">
               <div className="exp-stat" data-anim="zoom-in"><Briefcase size={16} /><span className="exp-stat-num">1+</span><span className="exp-stat-label">Years Experience</span></div>
